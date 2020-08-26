@@ -7,8 +7,8 @@
 
       <!-- Title / Desc -->
       <div class="info"> 
-        <div>{{title}}</div>
-        <div>{{desc}}</div>
+        <div class="card-title">{{title}}</div>
+        <div class="card-desc">{{desc}}</div>
       </div>
 
     </div>
@@ -25,10 +25,10 @@ export default {
 .card {
   position: relative;
   height: 200px;
-  width: 200px;
-  background-color: gray;
+  width: 300px;
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.15s;
 }
 
 .card img {
@@ -37,21 +37,42 @@ export default {
   object-fit: cover;
 }
 
+.card-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 5px;
+  /* border-bottom: 2px solid #fd6466; */
+  /* background: linear-gradient( 90deg, #515c70 -50%, #fd6466 500%); */
+  background: linear-gradient(90deg, #615c6f, #7f5e6d);
+}
+
+.card-desc {
+  padding: 0px 5px 5px 5px;
+}
+
 .info {
+  text-align: left;
   position: absolute;
   box-sizing: border-box;
-  background-color: rgb(151, 164, 223);
-  padding: 2px;
+  background-color: #515c70;
+  color: #f6feff;
+  /* padding: 2px 5px; */
   bottom: 0;
   width: 100%;
   cursor: pointer;
+  font-weight: 300;
 
-  transition: transform 0.5s;
-  transform: translateY(calc(100% - 20px));
+  transition: transform 0.3s;
+  transform: translateY(calc(100% - 30px));
 }
 
 .card:hover .info {
   transform: translateY(0%);
+}
+
+.card:active {
+  transform: scale(0.95);
 }
 
 </style>
