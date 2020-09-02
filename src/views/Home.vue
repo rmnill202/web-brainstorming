@@ -10,7 +10,7 @@
       <card v-for="item in list" v-bind:key="item.id"
             class="card"
             :title="item.title" :img="item.img" :desc="item.description"
-            :link="`/experiments/${item.id}`"/>
+            :link="`#/experiments/${item.id}`"/>
     </div>
   </div>
 </template>
