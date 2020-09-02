@@ -22,17 +22,20 @@
     <div>Gradual Anim. with onscroll and requestAnimationFrame</div>
     <div>Progress: {{barProgress}}</div>
     <div class="animatable-bar" :style="barStyle" ref="animbar"></div>
-    <div style="margin-top: 100px; margin-bottom: 200px">Progress: {{barProgress}}</div>
+    <div style="margin-top: 50px; margin-bottom: 100px">Progress: {{barProgress}}</div>
 
     
     <div>Progress: {{circleFill}}</div>
-    <div class="rotating-shape" ref="rotateshape" :style="rotateStyle">Almost done...</div>
-    <div style="margin-bottom: 100px;">Progress: {{circleFill}}</div>
+    <div style="display: flex">
+      <div class="rotating-shape" ref="rotateshape" :style="rotateStyle">Almost done...</div>
+      <svg width="190" height="160" :style="svgstyle">
+        <!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths -->
+        <path d="M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
+      </svg>
+    </div>
+    <div style="margin-bottom: 0px">Progress: {{circleFill}}</div>
 
-    <svg width="190" height="160" :style="svgstyle">
-      <!-- https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths -->
-      <path d="M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent"/>
-    </svg>
+    
 
 
     <div style="position: relative; margin-bottom: 1000px">
@@ -60,16 +63,18 @@ export default {
       scrollAnimWaiting: false,
       barProgress: 0.0,
       barAnimLength: 300,
-      barAnimTopMargin: 500,
+      barAnimTopMargin: 400,
 
       circleFill: 0.0,
       circleAnimLength: 600,
       circleAnimOffset: 500,
+      rgb1: [218, 100, 23],
+      rgb2: [104, 189, 133],
 
       parallaxValue: 0.0,
       colors: ['#2d2f35', '#4a3f3f', '#5a515b'],
-      scales: [0.2, 0.5, 1.0],
-      offsets: [0, 20, 40],
+      scales: [0.2, 0.7, 1.5],
+      offsets: [0, 0, 0],
     };
   },
   // IMPORTANT - For IntersectionObserver to work, it needs to be setup after the
@@ -79,14 +84,17 @@ export default {
   },
   computed: {
     barStyle() {
-      return `transform: scaleX(${this.barProgress});`
+      let r = this.lerp(this.barProgress, this.rgb1[0], this.rgb2[0]),
+          g = this.lerp(this.barProgress, this.rgb1[1], this.rgb2[1]),
+          b = this.lerp(this.barProgress, this.rgb1[2], this.rgb2[2]);
+      return `transform: scaleX(${this.barProgress}); background-color: rgb(${r} ${g} ${b})`
     },
     rotateStyle() {
       return `transform: rotate(${this.circleFill * 180}deg);`
     },
     svgstyle() {
       // https://css-tricks.com/svg-line-animation-works/
-      return `stroke-dasharray: 1000; stroke-dashoffset: ${1000 * this.circleFill};`
+      return `stroke-dasharray: 1000; stroke-dashoffset: ${1000 * this.circleFill}; margin-top: 100px`
     }
   },
   methods: {
@@ -139,9 +147,9 @@ export default {
 
       return _.clamp(-1.0 * ((top - offset) / length), 0.0, 1.0);
     },
-    // lerp(t, a, b) {
-    //   return _.clamp(a + (t * (b - a)), 0.0, 1.0);
-    // }
+    lerp(t, a, b) {
+      return a + (t * (b - a));
+    }
   },
 };
 </script>
@@ -170,12 +178,13 @@ export default {
 }
 
 .rotating-shape {
-  width: 300px; 
-  height: 300px;
+  width: 200px; 
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  /* margin: auto; */
+  margin: 50px 50px;
 
   background-color: #ddd;
 

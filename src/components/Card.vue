@@ -3,7 +3,7 @@
     <div class="card">
 
       <!-- Image -->
-      <img :src="require(`@/assets/placeholder.jpg`)"/>
+      <img :src="require(`@/assets/${img}`)"/>
 
       <!-- Title / Desc -->
       <div class="info"> 
