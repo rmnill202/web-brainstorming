@@ -27,7 +27,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL, // Needs to be set since the vue.config.js publicpath has been changed according to: 
   routes,
 });
