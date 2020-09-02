@@ -22,7 +22,7 @@ const routes = [
   ...MetaData.listing.map( ex =>({
     path: `/experiments/${ex.id}`,
     name: `exp-${ex.id}`,
-    component: () => import(`../experiments/${ex.folder}/${ex.component}`)
+    component: () => import(`../experiments/${ex.component}`)
   })),
 ];
 

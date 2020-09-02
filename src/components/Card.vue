@@ -55,7 +55,7 @@ export default {
   text-align: left;
   position: absolute;
   box-sizing: border-box;
-  background-color: #515c70;
+  background-color: #000000;
   color: #f6feff;
   /* padding: 2px 5px; */
   bottom: 0;
