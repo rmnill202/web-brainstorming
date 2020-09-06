@@ -44,7 +44,11 @@ export default {
   margin-bottom: 5px;
   /* border-bottom: 2px solid #fd6466; */
   /* background: linear-gradient( 90deg, #515c70 -50%, #fd6466 500%); */
-  background: linear-gradient(90deg, #615c6f, #7f5e6d);
+
+  
+  background: linear-gradient(90deg, #383541, #7f5e6d);
+  /* background-color: white;
+  color: black; */
 }
 
 .card-desc {
