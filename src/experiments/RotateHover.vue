@@ -151,6 +151,7 @@ export default {
 .parent-to-card {
   display: inline-block;
   cursor: pointer;
+  transform-style: preserve-3d
 }
 .parent-to-card:active .rounded-card-child {
   background-color: #853d3d;
